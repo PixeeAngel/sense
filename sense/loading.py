@@ -12,7 +12,7 @@ from sense import SOURCE_DIR
 from sense import backbone_networks
 
 with open(os.path.join(SOURCE_DIR, 'models.yml')) as f:
-    MODELS = yaml.load(f, Loader=yaml.FullLoader)
+    MODELS = yaml.load(f, Loader=yaml.SafeLoader)
 
 DOWNLOADABLE_CHECKPOINT_FILES = [
     MODELS['StridedInflatedEfficientNet']['pro']['backbone'],
