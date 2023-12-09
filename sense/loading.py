@@ -131,7 +131,7 @@ def get_relevant_weights(
 
     # Check if not empty
     if not model_config_list:
-        msg = (f'ERROR - Could not find a model configuration matching requested parameters:\n'
+        msg = ('ERROR - Could not find a model configuration matching requested parameters:\n'
                f'\tmodel_name={requested_model_name}\n'
                f'\tversion={requested_version}\n'
                f'\tfeature_converter={requested_converter}')
