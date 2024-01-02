@@ -89,9 +89,8 @@ class Controller:
                 self.frame_index += 1
 
                 # Grab frame if possible
-                img_tuple = self.video_stream.get_image()
                 # If not possible, stop
-                if img_tuple is None:
+                if (img_tuple := self.video_stream.get_image()) is None:
                     break
 
                 # Unpack

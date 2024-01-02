@@ -139,9 +139,8 @@ def get_relevant_weights(
         raise Exception(msg)
 
     for model_config in model_config_list:
-        weights = model_config.load_weights(log_fn)
 
-        if weights is not None:
+        if (weights := model_config.load_weights(log_fn)) is not None:
             return model_config, weights
 
     msg = ('ERROR - Weights files missing. To download, please go to https://20bn.com/licensing/sdk/evaluation and'

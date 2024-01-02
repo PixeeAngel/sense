@@ -181,8 +181,7 @@ def import_project():
     path = data['path']
 
     # Check for existing config file and make sure project name is unique
-    config = project_utils.load_project_config(path)
-    if config:
+    if config := project_utils.load_project_config(path):
         project_name = project_utils.get_unique_project_name(config['name'])
     else:
         # Use folder name as project name and make sure it is unique

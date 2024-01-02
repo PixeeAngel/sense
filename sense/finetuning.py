@@ -62,9 +62,8 @@ class FeaturesDataset(torch.utils.data.Dataset):
         features = np.load(self.files[idx])
         num_preds = features.shape[0]
 
-        temporal_annotation = self.temporal_annotations[idx]
         # remove beginning of prediction that is not padded
-        if temporal_annotation is not None:
+        if (temporal_annotation := self.temporal_annotations[idx]) is not None:
             temporal_annotation = np.array(temporal_annotation)
 
         if self.num_timesteps and num_preds > self.num_timesteps:
@@ -172,8 +171,7 @@ def extract_frames(video_path, inference_engine, path_frames=None, return_frames
     frames = []
 
     while True:
-        images = video_source.get_image()
-        if images is None:
+        if (images := video_source.get_image()) is None:
             break
         else:
             image, image_rescaled = images
@@ -315,8 +313,7 @@ def training_loops(net, train_loader, valid_loader, use_gpu, num_epochs, lr_sche
     best_loss = float('inf')
 
     for epoch in range(0, num_epochs):  # loop over the dataset multiple times
-        new_lr = lr_schedule.get(epoch)
-        if new_lr:
+        if new_lr := lr_schedule.get(epoch):
             log_fn(f"update lr to {new_lr}")
             for param_group in optimizer.param_groups:
                 param_group['lr'] = new_lr

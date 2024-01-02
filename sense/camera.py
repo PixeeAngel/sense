@@ -100,8 +100,7 @@ class VideoSource:
         Capture image from video stream frame-by-frame.
         The captured image and a scaled copy of the image are returned.
         """
-        img = self._get_frame()
-        if img is not None:
+        if (img := self._get_frame()) is not None:
             img_copy = img.copy()
             if self.preserve_aspect_ratio:
                 img_copy = self.pad_to_square(img)

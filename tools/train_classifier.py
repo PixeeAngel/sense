@@ -119,10 +119,9 @@ def train_model(path_in, path_out, model_name, model_version, num_layers_to_fine
         fine_tuned_layers = backbone_network.cnn[-num_layers_to_finetune:]
         backbone_network.cnn = backbone_network.cnn[0:-num_layers_to_finetune]
 
-    project_config = load_project_config(path_in)
 
     # Find label names
-    if project_config:
+    if project_config := load_project_config(path_in):
         label_names = project_config['classes'].keys()
     else:
         label_names = os.listdir(directories.get_videos_dir(path_in, 'train'))

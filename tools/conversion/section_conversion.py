@@ -343,8 +343,7 @@ def convolutional(config, container):
         logging.info("negative number of old frames!!!!!!!!!")
     if old_frames_to_read:
         logging.info(f"history frames needed: {old_frames_to_read}")
-    new_frames_to_save = min(container.frames, old_frames_to_read)
-    if new_frames_to_save:
+    if new_frames_to_save := min(container.frames, old_frames_to_read):
         logging.info(f"new frames to save: {new_frames_to_save}")
 
     # attach output ports to inputs we will need next pass
@@ -530,8 +529,7 @@ def convolutional(config, container):
     for f in range(int(container.frames / config.tstride)):
         container.all_layers.append(outputs[f])
 
-    frames = int(container.frames / config.tstride)
-    if frames == 0:
+    if (frames := int(container.frames / config.tstride)) == 0:
         raise ValueError("tried to time stride single frame")
 
     container.layer_names[config.layer_name] = len(container.all_layers) - 1
