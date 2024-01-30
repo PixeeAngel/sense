@@ -59,7 +59,7 @@ def save_video(project, split, label):
         output_file = os.path.join(output_path, f'video_{video_idx}.mp4')
 
     # Convert video to target frame rate and save to output name
-    subprocess.call(f'ffmpeg -i "{temp_file_name}" -r 30 "{output_file}"', shell=True)
+    subprocess.call(f'ffmpeg -i "{temp_file_name}" -r 30 "{output_file}"', shell=False)
 
     # Remove temp video file
     os.remove(temp_file_name)
