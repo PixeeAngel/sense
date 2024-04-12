@@ -107,7 +107,7 @@ def train_model(path_in, path_out, model_name, model_version, num_layers_to_fine
         if not num_timesteps:
             # Remove 1 because we added 0 to temporal_dependencies
             num_layers = len(backbone_network.num_required_frames_per_layer) - 1
-            msg = (f'ERROR - Num of layers to finetune not compatible. '
+            msg = ('ERROR - Num of layers to finetune not compatible. '
                    f'Must be an integer between 0 and {num_layers}')
             log_fn(msg)
             raise IndexError(msg)
