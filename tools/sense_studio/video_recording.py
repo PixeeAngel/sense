@@ -9,6 +9,7 @@ from flask import render_template
 from flask import request
 
 from tools.sense_studio import project_utils
+from security import safe_command
 
 
 video_recording_bp = Blueprint('video_recording_bp', __name__)
@@ -59,7 +60,7 @@ def save_video(project, split, label):
         output_file = os.path.join(output_path, f'video_{video_idx}.mp4')
 
     # Convert video to target frame rate and save to output name
-    subprocess.call(f'ffmpeg -i "{temp_file_name}" -r 30 "{output_file}"', shell=True)
+    safe_command.run(subprocess.call, f'ffmpeg -i "{temp_file_name}" -r 30 "{output_file}"', shell=True)
 
     # Remove temp video file
     os.remove(temp_file_name)
